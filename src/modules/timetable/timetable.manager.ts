@@ -48,7 +48,7 @@ export async function updateTimeTable({
   return updated;
 }
 
-export async function findTimeTable(filters: {
+export async function findTimeTables(filters: {
   name?: string;
   user?: string;
   repeatable?: boolean;

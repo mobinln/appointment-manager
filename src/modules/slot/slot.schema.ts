@@ -1,7 +1,7 @@
 import mongoose, { Schema, Types } from "mongoose";
 
 export interface SlotInterface {
-  timetableId: Types.ObjectId;
+  timetableId?: Types.ObjectId | null;
   startTime: Date;
   endTime: Date;
   taken?: boolean;
@@ -10,7 +10,11 @@ export interface SlotInterface {
 
 const slotSchema = new mongoose.Schema<SlotInterface>(
   {
-    timetableId: { type: Schema.Types.ObjectId, ref: "TimeTable" },
+    timetableId: {
+      type: Schema.Types.ObjectId,
+      ref: "TimeTable",
+      default: null,
+    },
     startTime: Date,
     endTime: Date,
     taken: { type: Boolean, default: false },

@@ -2,7 +2,7 @@ import { Router } from "express";
 import { TimeTableInterface } from "./timetable.schema";
 import { createTimetableZod } from "./timetable.zod";
 import {
-  findTimeTable,
+  findTimeTables,
   createTimeTable,
   deleteTimeTable,
   findTimeTableById,
@@ -15,7 +15,7 @@ const router = Router();
 
 router.get("/timetable", async (req, res) => {
   try {
-    const timetables = await findTimeTable({
+    const timetables = await findTimeTables({
       name: req.query.name as string,
       user: req.query.user as string,
       repeatable:

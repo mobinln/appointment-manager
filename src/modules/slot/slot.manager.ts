@@ -2,12 +2,17 @@ import { HydratedDocument, Types } from "mongoose";
 import Slot, { SlotInterface } from "./slot.schema";
 import TimeTable from "../timetable/timetable.schema";
 
-export async function createSlot(
-  data: SlotInterface
-): Promise<HydratedDocument<SlotInterface> | Error> {
-  const timetable = await TimeTable.findById(data.timetableId);
-  if (!timetable) {
-    return new Error("timetable not found");
+export async function createSlot(data: {
+  timetableId?: string | Types.ObjectId;
+  startTime: Date;
+  endTime: Date;
+  metadata?: any;
+}): Promise<HydratedDocument<SlotInterface> | Error> {
+  if (data.timetableId) {
+    const timetable = await TimeTable.findById(data.timetableId);
+    if (!timetable) {
+      return new Error("timetable not found");
+    }
   }
 
   const slot = new Slot(data);

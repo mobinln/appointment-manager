@@ -8,6 +8,8 @@ import timetableRouter from "./src/modules/timetable/timetable.router";
 import slotsRouter from "./src/modules/slot/slot.router";
 import eventRouter from "./src/modules/event/event.router";
 
+import { slotCronCreator } from "./src/cron/slot.cron";
+
 config.config();
 
 async function bootstrap() {
@@ -20,6 +22,9 @@ async function bootstrap() {
 
   await connectMongo();
   console.log("mongo connected");
+
+  const slotCron = slotCronCreator();
+  slotCron.start();
 
   app.use("/api", timetableRouter);
   app.use("/api", slotsRouter);
