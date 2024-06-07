@@ -4,16 +4,20 @@ import {
   EventHistorySchema,
 } from "../event-history/event-history.schema";
 
-export const eventTypes = [
-  "archived",
-  "pending-member",
+export const eventStatuses = [
   "pending-user",
+  "accepted",
+  "pending-member",
+  "rejected-by-user",
+  "rejected-by-member",
+  "canceled",
   "done",
-];
-export type EventTypes = (typeof eventTypes)[number];
+  "archived",
+] as const;
+export type EventStatus = (typeof eventStatuses)[number];
 
 export interface EventInterface {
-  status: EventTypes;
+  status: EventStatus;
   slotId: Types.ObjectId;
   title: string;
   member: string;
@@ -23,7 +27,7 @@ export interface EventInterface {
 
 const eventSchema = new mongoose.Schema<EventInterface>(
   {
-    status: { type: String, enum: eventTypes, default: "pending-user" },
+    status: { type: String, enum: eventStatuses, default: "pending-user" },
     slotId: { type: Schema.Types.ObjectId, ref: "Slot" },
     member: String,
     title: String,
