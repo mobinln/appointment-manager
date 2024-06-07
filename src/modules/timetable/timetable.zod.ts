@@ -16,7 +16,7 @@ const hourInfo = z.object({
   interval: z.coerce.number().min(1).max(120),
 });
 
-const timetableZod = z
+export const timetableZod = z
   .object({
     sat: z.record(hourKey, hourInfo).optional(),
     sun: z.record(hourKey, hourInfo).optional(),

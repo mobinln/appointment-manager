@@ -8,8 +8,9 @@ import timetableRouter from "./src/modules/timetable/timetable.router";
 import slotsRouter from "./src/modules/slot/slot.router";
 import eventRouter from "./src/modules/event/event.router";
 
+config.config();
+
 async function bootstrap() {
-  config.config();
   const app = express();
 
   app.use(express.json());
