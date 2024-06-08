@@ -8,18 +8,19 @@ export const slotCronCreator = () =>
     "0 0 */14 * *",
     async function () {
       try {
-        await Slot.deleteMany({
-          taken: false,
-          startTime: { $lt: new Date() },
-          endTime: { $lt: new Date() },
-        });
-
-        const timeTables = await TimeTable.find({
+        await TimeTable.find({
           repeatable: true,
-        });
-        for (const timeTable of timeTables) {
-          await createTimeTableSlots(timeTable);
-        }
+        })
+          .cursor()
+          .eachAsync(async (timeTable) => {
+            await Slot.deleteMany({
+              taken: false,
+              startTime: { $lt: new Date() },
+              endTime: { $lt: new Date() },
+              timetableId: timeTable._id,
+            });
+            await createTimeTableSlots(timeTable);
+          });
         console.log(new Date(), "Generated new slots");
       } catch (error) {
         console.log(new Date(), "Could not create slots", error);

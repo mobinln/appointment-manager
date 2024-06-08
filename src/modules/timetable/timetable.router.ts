@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { TimeTableInterface } from "./timetable.schema";
-import { createTimetableZod } from "./timetable.zod";
+import { createTimetableZod } from "./zod/timetable.zod";
 import {
   findTimeTables,
   createTimeTable,

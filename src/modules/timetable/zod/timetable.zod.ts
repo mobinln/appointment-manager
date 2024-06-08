@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { checkOverlappingRanges } from "../slot/utils";
+import { checkOverlappingRanges } from "../../slot/utils";
 
 const hourKey = z.string().refine((v) => {
   if (/^\d+-\d+$/.test(v)) {
@@ -40,13 +40,5 @@ export const timetableZod = z
 
     return true;
   }, "has overlapping ranges in timetable");
-
-export const createTimetableZod = z.object({
-  user: z.string(),
-  timetable: timetableZod,
-  repeatable: z.boolean().optional(),
-  timezone: z.string(),
-  name: z.string(),
-});
 
 export type TimeTableZod = z.infer<typeof timetableZod>;
