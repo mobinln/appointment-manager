@@ -11,6 +11,7 @@ This module consists of 3 main entities
 1. timetable
 2. slot
 3. event
+
 You can create a `timetable`, which a cron job will get triggered, and then make `slots` based on that timetable
 You can then create an `event` for each slot and accept, reject, reschedule, or cancel it.
 There is also an `event-history` included inside the `event` schema, which keeps track of the history of the `event`.
