@@ -8,6 +8,7 @@ It exposes a REST API and is designed to be containerized and horizontally scala
 ## Overall Structure
 
 This module consists of 3 main entities
+
 1. timetable
 2. slot
 3. event
@@ -15,3 +16,10 @@ This module consists of 3 main entities
 You can create a `timetable`, which a cron job will get triggered, and then make `slots` based on that timetable
 You can then create an `event` for each slot and accept, reject, reschedule, or cancel it.
 There is also an `event-history` included inside the `event` schema, which keeps track of the history of the `event`.
+
+## TODO
+
+- [ ] Add more logs
+- [ ] Add swagger
+- [ ] Add unit tests
+- [ ] Document architecture
