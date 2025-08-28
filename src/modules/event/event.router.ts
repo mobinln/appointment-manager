@@ -1,4 +1,4 @@
-import e, { Router } from "express";
+import { Router } from "express";
 import {
   cancelEvent,
   changeEventStatus,
@@ -8,12 +8,12 @@ import {
   rejectEventByMember,
   rejectEventByUser,
   rescheduleEvent,
-} from "./event.manager";
-import { createEventZod } from "./zod/createEvent.zod";
-import { createErrorMessage, createSimpleMessage } from "../../utils/messages";
-import { rescheduleEventZod } from "./zod/rescheduleEvent.zod";
-import { rejectByMemberZod } from "./zod/rejectByMember.zod";
-import { rejectByUserZod } from "./zod/rejectByUser.zod";
+} from "./event.manager.js";
+import { createEventZod } from "./zod/createEvent.zod.js";
+import { createErrorMessage, createSimpleMessage } from "../../utils/messages.js";
+import { rescheduleEventZod } from "./zod/rescheduleEvent.zod.js";
+import { rejectByMemberZod } from "./zod/rejectByMember.zod.js";
+import { rejectByUserZod } from "./zod/rejectByUser.zod.js";
 
 const eventRouter = Router();
 
@@ -45,7 +45,8 @@ eventRouter.post("/event", async (req, res) => {
 
 eventRouter.post("/event/:id/reschedule", async (req, res) => {
   try {
-    const event = await rescheduleEvent(rescheduleEventZod.parse({ eventId: req.params.id, ...req.body }));
+    const body = rescheduleEventZod.parse({ eventId: req.params.id, ...req.body });
+    const event = await rescheduleEvent(body);
 
     res.send(event);
   } catch (error) {

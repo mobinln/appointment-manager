@@ -1,9 +1,10 @@
 {
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "nodemon": "^3.1.2",
+    "@types/node": "^24.3.0",
+    "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "cron": "^3.1.7",
@@ -16,6 +17,7 @@
     "zod": "^3.23.8"
   },
   "name": "appointment-manager",
+  "type": "module",
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {

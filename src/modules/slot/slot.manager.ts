@@ -1,6 +1,6 @@
-import { HydratedDocument, Types } from "mongoose";
-import Slot, { SlotInterface } from "./slot.schema";
-import TimeTable from "../timetable/timetable.schema";
+import { type HydratedDocument, Types } from "mongoose";
+import Slot, { type SlotInterface } from "./slot.schema.js";
+import TimeTable from "../timetable/timetable.schema.js";
 
 export async function createSlot(data: {
   timetableId?: string | Types.ObjectId;

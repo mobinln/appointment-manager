@@ -1,14 +1,14 @@
 import express from "express";
 import config from "dotenv";
 
-import connectMongo from "utils/mongo";
-import { logger } from "utils/logger";
+import connectMongo from "./utils/mongo.js";
+import { logger } from "./utils/logger.js";
 
-import slotsRouter from "modules/slot/slot.router";
-import eventRouter from "modules/event/event.router";
-import timetableRouter from "modules/timetable/timetable.router";
+import slotsRouter from "./modules/slot/slot.router.js";
+import eventRouter from "./modules/event/event.router.js";
+import timetableRouter from "./modules/timetable/timetable.router.js";
 
-import { slotCronCreator } from "cron/slot";
+import { slotCronCreator } from "./jobs/slot.js";
 
 config.config();
 

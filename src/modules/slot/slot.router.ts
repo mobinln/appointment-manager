@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { createSlot, findSlots } from "./slot.manager";
-import { formatDate } from "../../utils/date";
-import { getSlotsZod } from "./zod/getSlots.zod";
-import { createSlotZod } from "./zod/createSlot.zod";
+import { createSlot, findSlots } from "./slot.manager.js";
+import { formatDate } from "../../utils/date.js";
+import { getSlotsZod } from "./zod/getSlots.zod.js";
+import { createSlotZod } from "./zod/createSlot.zod.js";
 
 const slotRouter = Router();
 

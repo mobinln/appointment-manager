@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { checkOverlappingRanges } from "../../slot/utils";
+import { checkOverlappingRanges } from "../../slot/utils.js";
 
 const hourKey = z.string().refine((v) => {
   if (/^\d+-\d+$/.test(v)) {

@@ -1,14 +1,12 @@
-import { HydratedDocument } from "mongoose";
-import TimeTable, { TimeTableInterface } from "./timetable.schema";
-import { divideRangeToSlots } from "../slot/utils";
-import { createSlot } from "../slot/slot.manager";
-import { addMinutes, addWeeks, compareAsc, set, setDay } from "date-fns";
-import Slot from "../slot/slot.schema";
-import { getWeekDayNumber } from "../../utils/date";
+import { type HydratedDocument } from "mongoose";
+import TimeTable, { type TimeTableInterface } from "./timetable.schema.js";
+import { divideRangeToSlots } from "../slot/utils.js";
+import { createSlot } from "../slot/slot.manager.js";
+import { addMinutes, addWeeks, compareAsc, setDay } from "date-fns";
+import Slot from "../slot/slot.schema.js";
+import { getWeekDayNumber } from "../../utils/date.js";
 
-export async function createTimeTable(
-  data: TimeTableInterface
-): Promise<HydratedDocument<TimeTableInterface>> {
+export async function createTimeTable(data: TimeTableInterface): Promise<HydratedDocument<TimeTableInterface>> {
   const timeTable = new TimeTable(data);
   await timeTable.save();
   return timeTable as HydratedDocument<TimeTableInterface>;
@@ -21,10 +19,7 @@ export async function updateTimeTable({
   id: string;
   data: Partial<TimeTableInterface>;
 }): Promise<HydratedDocument<TimeTableInterface> | Error> {
-  const updatedTimeTable = await TimeTable.findOneAndUpdate(
-    { _id: id },
-    data
-  ).exec();
+  const updatedTimeTable = await TimeTable.findOneAndUpdate({ _id: id }, data).exec();
   if (!updatedTimeTable) {
     return new Error("timetable not found");
   }
@@ -56,17 +51,13 @@ export async function findTimeTables(filters: {
   const query = {
     ...(filters.name ? { name: { $regex: filters.name } } : {}),
     ...(filters.user ? { user: filters.user } : {}),
-    ...(filters.repeatable !== undefined
-      ? { repeatable: filters.repeatable }
-      : {}),
+    ...(filters.repeatable !== undefined ? { repeatable: filters.repeatable } : {}),
   };
   const timeTable = await TimeTable.find(query).exec();
   return timeTable as TimeTableInterface[];
 }
 
-export async function findTimeTableById(
-  id: string
-): Promise<HydratedDocument<TimeTableInterface>> {
+export async function findTimeTableById(id: string): Promise<HydratedDocument<TimeTableInterface>> {
   const result = await TimeTable.findById(id).exec();
   return result as HydratedDocument<TimeTableInterface>;
 }
@@ -75,13 +66,10 @@ export async function deleteTimeTable(id: string) {
   await TimeTable.findByIdAndDelete(id).exec();
 }
 
-export async function createTimeTableSlots(
-  timetable: HydratedDocument<TimeTableInterface>
-) {
+export async function createTimeTableSlots(timetable: HydratedDocument<TimeTableInterface>) {
   for (let weekNumber = 1; weekNumber <= 2; weekNumber++) {
     for (let day in timetable.timetable) {
-      const dayInfo =
-        timetable.timetable[day as keyof typeof timetable.timetable];
+      const dayInfo = timetable.timetable[day as keyof typeof timetable.timetable];
       if (!dayInfo) {
         continue;
       }
@@ -91,13 +79,13 @@ export async function createTimeTableSlots(
           continue;
         }
         const slotStarts = divideRangeToSlots({
-          date: addWeeks(
-            setDay(new Date(), getWeekDayNumber(day)!),
-            weekNumber
-          ),
+          date: addWeeks(setDay(new Date(), getWeekDayNumber(day)!), weekNumber),
           interval: rangeInfo.interval,
           range: range,
         });
+        if (!slotStarts) {
+          return;
+        }
 
         await Promise.all(
           slotStarts

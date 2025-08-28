@@ -1,5 +1,5 @@
 import mongoose, { Schema, Types } from "mongoose";
-import { EventHistoryInterface, EventHistorySchema } from "../event-history/event-history.schema";
+import { type EventHistoryInterface, EventHistorySchema } from "../event-history/event-history.schema.js";
 
 export const eventStatuses = [
   "pending-user",

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { timetableZod } from "./timetable.zod";
+import { timetableZod } from "./timetable.zod.js";
 
 export const editTimeTableZod = z.object({
   user: z.string().optional(),

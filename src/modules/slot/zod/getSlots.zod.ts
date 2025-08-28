@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { zodBoolean } from "../../../utils/zod";
+import { zodBoolean } from "../../../utils/zod.js";
 
 export const getSlotsZod = z.object({
   timetableId: z.string().optional(),

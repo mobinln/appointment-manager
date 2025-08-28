@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { TimeTableInterface } from "./timetable.schema";
-import { createTimetableZod } from "./zod/createTimeTable.zod";
+import { type TimeTableInterface } from "./timetable.schema.js";
+import { createTimetableZod } from "./zod/createTimeTable.zod.js";
 import {
   findTimeTables,
   createTimeTable,
@@ -8,8 +8,8 @@ import {
   findTimeTableById,
   createTimeTableSlots,
   updateTimeTable,
-} from "./timetable.manager";
-import { editTimeTableZod } from "./zod/editTimeTable.zod";
+} from "./timetable.manager.js";
+import { editTimeTableZod } from "./zod/editTimeTable.zod.js";
 
 const router = Router();
 

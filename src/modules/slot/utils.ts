@@ -2,11 +2,18 @@ import { addMinutes, getHours, set, setHours } from "date-fns";
 
 export function divideRangeToSlots({ date, interval, range }: { date: Date; range: string; interval: number }) {
   const [start, end] = range.split("-").map(Number);
+  if (!start || !end) {
+    return;
+  }
   const result: Date[] = [];
 
   result.push(set(date, { hours: start, minutes: 0, seconds: 0 }));
-  while (getHours(result[result.length - 1]) < getHours(setHours(date, end))) {
-    result.push(addMinutes(result[result.length - 1], interval));
+  let current = result[result.length - 1];
+  while (current && getHours(current) < getHours(setHours(date, end))) {
+    if (!current) {
+      continue;
+    }
+    result.push(addMinutes(current, interval));
   }
 
   return result;
@@ -14,7 +21,7 @@ export function divideRangeToSlots({ date, interval, range }: { date: Date; rang
 
 export function checkOverlappingRanges(ranges: string[]): boolean {
   // Convert each string range into an array of [start, end] numbers
-  const numericRanges = ranges.map((range) => range.split("-").map(Number));
+  const numericRanges = ranges.map((range) => range.split("-").map(Number)) as [number, number][];
 
   // Sort the numeric ranges based on their start values
   numericRanges.sort((a, b) => a[0] - b[0]);
@@ -26,7 +33,7 @@ export function checkOverlappingRanges(ranges: string[]): boolean {
 
     // If the end value of the previous range is greater than or equal to the start value of the current range,
     // then there is an overlap
-    if (prevRange[1] > currRange[0]) {
+    if (currRange && prevRange && prevRange[1] > currRange[0]) {
       return true;
     }
   }

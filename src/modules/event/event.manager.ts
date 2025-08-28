@@ -1,7 +1,7 @@
-import { HydratedDocument, Types } from "mongoose";
-import Event, { EventInterface, EventStatus } from "./event.schema";
-import Slot from "../slot/slot.schema";
-import { createSlot, takeSlot } from "../slot/slot.manager";
+import { type HydratedDocument, Types } from "mongoose";
+import Event, { type EventInterface, type EventStatus } from "./event.schema.js";
+import Slot from "../slot/slot.schema.js";
+import { createSlot, takeSlot } from "../slot/slot.manager.js";
 
 export async function findEvents(filters: {
   status?: string;

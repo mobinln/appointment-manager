@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { TimeTableZod } from "./zod/timetable.zod";
+import { type TimeTableZod } from "./zod/timetable.zod.js";
 
 export interface TimeTableInterface {
   name: string;

@@ -1,8 +1,8 @@
 import { CronJob } from "cron";
-import { createTimeTableSlots } from "modules/timetable/timetable.manager";
-import TimeTable from "modules/timetable/timetable.schema";
-import Slot from "modules/slot/slot.schema";
-import { logger } from "utils/logger";
+import { createTimeTableSlots } from "../modules/timetable/timetable.manager.js";
+import TimeTable from "../modules/timetable/timetable.schema.js";
+import Slot from "../modules/slot/slot.schema.js";
+import { logger } from "../utils/logger.js";
 
 export const slotCronCreator = () =>
   new CronJob(

@@ -1,4 +1,4 @@
-import { formatDate } from "./date";
+import { formatDate } from "./date.js";
 
 export function createErrorMessage({ message }: { message: string }) {
   return { error: message, time: formatDate(new Date()) };
