@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { TimeTableInterface } from "./timetable.schema";
-import { createTimetableZod } from "./zod/timetable.zod";
+import { createTimetableZod } from "./zod/createTimeTable.zod";
 import {
   findTimeTables,
   createTimeTable,
@@ -18,10 +18,7 @@ router.get("/timetable", async (req, res) => {
     const timetables = await findTimeTables({
       name: req.query.name as string,
       user: req.query.user as string,
-      repeatable:
-        req.query.repeatable !== undefined
-          ? req.query.repeatable === "true"
-          : undefined,
+      repeatable: req.query.repeatable !== undefined ? req.query.repeatable === "true" : undefined,
     });
     res.send(timetables);
   } catch (error) {

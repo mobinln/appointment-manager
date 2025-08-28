@@ -34,12 +34,8 @@ export async function findSlots(filters: {
     ...(filters["min:startTime"] || filters["max:startTime"]
       ? {
           startTime: {
-            ...(filters["min:startTime"]
-              ? { $gte: filters["min:startTime"] }
-              : {}),
-            ...(filters["max:startTime"]
-              ? { $lte: filters["max:startTime"] }
-              : {}),
+            ...(filters["min:startTime"] ? { $gte: filters["min:startTime"] } : {}),
+            ...(filters["max:startTime"] ? { $lte: filters["max:startTime"] } : {}),
           },
         }
       : {}),

@@ -1,14 +1,6 @@
 import { addMinutes, getHours, set, setHours } from "date-fns";
 
-export function divideRangeToSlots({
-  date,
-  interval,
-  range,
-}: {
-  date: Date;
-  range: string;
-  interval: number;
-}) {
+export function divideRangeToSlots({ date, interval, range }: { date: Date; range: string; interval: number }) {
   const [start, end] = range.split("-").map(Number);
   const result: Date[] = [];
 

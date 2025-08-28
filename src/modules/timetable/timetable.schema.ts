@@ -14,15 +14,12 @@ const timetableSchema = new mongoose.Schema<TimeTableInterface>(
     timetable: Schema.Types.Mixed,
     name: String,
     user: String,
-    repeatable: { type: Boolean, default: true },
+    repeatable: { type: Boolean, default: false },
     timezone: String,
   },
   { timestamps: true }
 );
 
-const TimeTable = mongoose.model<TimeTableInterface>(
-  "TimeTable",
-  timetableSchema
-);
+const TimeTable = mongoose.model<TimeTableInterface>("TimeTable", timetableSchema);
 
 export default TimeTable;

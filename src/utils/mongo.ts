@@ -1,8 +1,6 @@
-import { config } from "dotenv";
 import mongoose from "mongoose";
-config();
 
-const uri = `mongodb://127.0.0.1:${process.env.MONGO_PORT}/appointmentManager`;
+const uri = process.env.MONGO_URI || "mongodb://mongodb:27017/appointments";
 
 export default async function connectToMongo() {
   const client = await mongoose.connect(uri);

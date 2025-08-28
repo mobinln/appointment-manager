@@ -45,9 +45,7 @@ eventRouter.post("/event", async (req, res) => {
 
 eventRouter.post("/event/:id/reschedule", async (req, res) => {
   try {
-    const event = await rescheduleEvent(
-      rescheduleEventZod.parse({ eventId: req.params.id, ...req.body })
-    );
+    const event = await rescheduleEvent(rescheduleEventZod.parse({ eventId: req.params.id, ...req.body }));
 
     res.send(event);
   } catch (error) {

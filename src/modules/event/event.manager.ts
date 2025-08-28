@@ -44,9 +44,7 @@ export async function createEvent(data: {
   return await newEvent.save();
 }
 
-export async function deleteEvent(
-  eventId: string | Types.ObjectId
-): Promise<Error | void> {
+export async function deleteEvent(eventId: string | Types.ObjectId): Promise<Error | void> {
   const event = await Event.findById(eventId);
   if (!event) {
     return new Error("event not found");
@@ -166,13 +164,7 @@ export async function rejectEventByMember({
   return event;
 }
 
-export async function rejectEventByUser({
-  eventId,
-  comment,
-}: {
-  eventId: Types.ObjectId | string;
-  comment: string;
-}) {
+export async function rejectEventByUser({ eventId, comment }: { eventId: Types.ObjectId | string; comment: string }) {
   const event = await Event.findById(eventId);
   if (!event) {
     return new Error("event not found");

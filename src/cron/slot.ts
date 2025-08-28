@@ -1,7 +1,8 @@
 import { CronJob } from "cron";
-import { createTimeTableSlots } from "../modules/timetable/timetable.manager";
-import TimeTable from "../modules/timetable/timetable.schema";
-import Slot from "../modules/slot/slot.schema";
+import { createTimeTableSlots } from "modules/timetable/timetable.manager";
+import TimeTable from "modules/timetable/timetable.schema";
+import Slot from "modules/slot/slot.schema";
+import { logger } from "utils/logger";
 
 export const slotCronCreator = () =>
   new CronJob(
@@ -21,9 +22,9 @@ export const slotCronCreator = () =>
             });
             await createTimeTableSlots(timeTable);
           });
-        console.log(new Date(), "Generated new slots");
+        logger.info({ message: "generated new slots" });
       } catch (error) {
-        console.log(new Date(), "Could not create slots", error);
+        logger.info({ message: "could not create slots", error });
       }
     },
     null,
