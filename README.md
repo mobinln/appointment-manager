@@ -23,3 +23,9 @@ There is also an `event-history` included inside the `event` schema, which keeps
 - [ ] Add swagger
 - [ ] Add unit tests
 - [ ] Document architecture
+- [ ] Add API versioning strategy
+- [ ] Add health check endpoints for monitoring
+- [ ] Implement graceful shutdown handling
+- [ ] Add database indexing on frequently queried fields (startTime, endTime, timetableId)
+- [ ] Implement pagination for API endpoints that return lists
+- [ ] Handle the case when a slot-cron fails
