@@ -15,9 +15,8 @@ It exposes a REST API and is designed to be containerized and horizontally scala
 
 - CRUD timetable
 - CRUD slot
-- Create/Cancel/Reject/Archive/Re-Schedule/Complete event
+- Create/Cancel/Reject/Re-Schedule/Complete event
 
-## Aggregates
+## Architecture
 
-- Slot
-- Event
+HTTP -> Controller -> Service -> Domain and Repository -> Persistence
