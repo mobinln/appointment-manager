@@ -20,3 +20,17 @@ It exposes a REST API and is designed to be containerized and horizontally scala
 ## Architecture
 
 HTTP -> Controller -> Service -> Domain and Repository -> Persistence
+
+## TODO
+
+- [ ] Finalize tests/domain
+- [ ] Add timetable persistence and repository
+- [ ] Add timetable repository tests
+- [ ] Add event persistence and repository
+- [ ] Add event repository tests
+- [ ] Add slot service (with version for race conditions)
+- [ ] Add slot service tests
+- [ ] Add timetable service
+- [ ] Add timetable service tests
+- [ ] Add event service
+- [ ] Add event service tests
